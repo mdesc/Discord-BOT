@@ -90,9 +90,22 @@ async def count(ctx):
     for user in ctx.guild.members:
             dictionnary[str(user.status)]+=1 
 
-   
-    await ctx.send("There is " + str(dictionnary['online']) + " online members")
+    await ctx.send("There are " + str(dictionnary['online']) + " online members, " +
+        str(dictionnary['idle']) + " idle members, " +
+        str(dictionnary['offline']) + " offline members and " +
+        str(dictionnary['dnd']) + " members not to be disturbed !")
+
+@bot.command()
+async def xkcd(ctx):
+    await ctx.send("https://xkcd.com/" + str(randint(1,2673))) #2673 ? it is the number of the last published xkcd (currently)
+
+@bot.command()
+async def poll(ctx, message=None):
+    if not message :
+        await ctx.send("usage: !poll <your question>")
+    else:
+        await ctx.send("<@here>" + str(message))
 
 
-token = ""
+token = "MBEq3V2yt8qfp4aEpHqgC-pBaerJ52UPN3TK_A"
 bot.run(token)  # Starts the bot
